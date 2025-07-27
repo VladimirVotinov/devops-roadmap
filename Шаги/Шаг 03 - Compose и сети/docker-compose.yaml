@@ -1,0 +1,9 @@
+services:
+
+  whoami:
+    image: traefik/whoami
+    container_name: <container_name>
+    hostname: <hostname>
+    restart: unless-stopped
+    environment:
+      TZ: Europe/Moscow
