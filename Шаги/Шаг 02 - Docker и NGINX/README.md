@@ -5,7 +5,7 @@
 ### 📖 Что изучал
 
 * Видео: Docker — основы контейнеров ([ссылка](https://www.youtube.com/watch?v=Kyx2PsuwomE))
-* Гайд: Get Started with Docker ([ссылка]([https://](https://docs.docker.com/get-started/get-docker/)https://))
+* Гайд: Get Started with Docker ([ссылка]([(https://docs.docker.com/get-started/get-docker/)))
 
 ### 🛠 Что сделал
 
