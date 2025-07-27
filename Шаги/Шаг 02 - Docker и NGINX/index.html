@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevOps Solutions | Автоматизация и ускорение разработки</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .bg-gray-p-900 {
+            background-color: #003140;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .process-step::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 24px;
+            height: 100%;
+            width: 2px;
+            background-color: #3b82f6;
+            z-index: 0;
+        }
+        .process-step:last-child::before {
+            display: none;
+        }
+        .timer-box {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        #chatbot {
+            transition: all 0.3s ease;
+        }
+        .chatbot-hidden {
+            transform: translateY(100%);
+        }
+    </style>
+</head>
+<body class="font-sans antialiased text-gray-800">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-3">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <div class="text-2xl font-bold text-blue-600">DevOps<span class="text-blue-800">Pro</span></div>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#services" class="text-gray-700 hover:text-blue-600">Услуги</a>
+                    <a href="#process" class="text-gray-700 hover:text-blue-600">Процесс</a>
+                    <a href="#cases" class="text-gray-700 hover:text-blue-600">Кейсы</a>
+                    <a href="#faq" class="text-gray-700 hover:text-blue-600">FAQ</a>
+                </div>
+                <a href="#contact" class="hidden md:block bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition duration-300">Обсудить проект</a>
+                <button class="md:hidden focus:outline-none" id="mobile-menu-button">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="md:hidden hidden mt-2 pb-2" id="mobile-menu">
+                <a href="#services" class="block px-2 py-1 text-gray-700 hover:text-blue-600">Услуги</a>
+                <a href="#process" class="block px-2 py-1 text-gray-700 hover:text-blue-600">Процесс</a>
+                <a href="#cases" class="block px-2 py-1 text-gray-700 hover:text-blue-600">Кейсы</a>
+                <a href="#faq" class="block px-2 py-1 text-gray-700 hover:text-blue-600">FAQ</a>
+                <a href="#contact" class="block mt-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition duration-300 w-full text-center">Обсудить проект</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="gradient-bg text-white">
+        <div class="container mx-auto px-6 py-20 md:py-32">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-6">Автоматизируем и ускоряем вашу разработку с DevOps</h1>
+                    <p class="text-xl mb-8 text-blue-100">Настроим CI/CD, облачную инфраструктуру и мониторинг так, чтобы ваша команда сосредоточилась на продукте, а не на проблемах с деплоем.</p>
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                        <a href="#contact" class="bg-white text-blue-600 hover:bg-gray-100 px-6 py-3 rounded-md font-semibold text-center transition duration-300">Заказать DevOps-аудит бесплатно</a>
+                        <a href="#guide" class="border-2 border-white text-white hover:bg-blue-700 px-6 py-3 rounded-md font-semibold text-center transition duration-300">Получить гайд по CI/CD</a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <img src="images/product-launch.svg" alt="DevOps Automation" class="w-full max-w-md">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Badges -->
+    <section class="bg-gray-50 py-8">
+        <div class="container mx-auto px-6">
+            <p class="text-center text-gray-500 mb-6">Нам доверяют компании по всему миру</p>
+            <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-70">
+                <div class="text-3xl font-bold text-gray-700">AWS</div>
+                <div class="text-3xl font-bold text-blue-600">Azure</div>
+                <div class="text-3xl font-bold text-green-600">Google Cloud</div>
+                <div class="text-3xl font-bold text-purple-600">Kubernetes</div>
+                <div class="text-3xl font-bold text-gray-800">Docker</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Наши DevOps-решения</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Мы предлагаем комплексные решения для автоматизации и оптимизации ваших процессов разработки и эксплуатации</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="feature-card bg-white p-8 rounded-lg shadow-md border border-gray-100 transition duration-300">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-robot text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Автоматизация CI/CD</h3>
+                    <p class="text-gray-600">Быстрые и безопасные деплои с автоматизированными пайплайнами. Сокращаем время вывода изменений в продакшен.</p>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="feature-card bg-white p-8 rounded-lg shadow-md border border-gray-100 transition duration-300">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-cloud text-green-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Облачные решения</h3>
+                    <p class="text-gray-600">AWS, Azure, GCP под ключ. Оптимизируем инфраструктуру под ваши потребности и бюджет.</p>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="feature-card bg-white p-8 rounded-lg shadow-md border border-gray-100 transition duration-300">
+                    <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-expand text-purple-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Масштабируемость</h3>
+                    <p class="text-gray-600">Инфраструктура, которая растет с вами. Автоматическое масштабирование под нагрузку.</p>
+                </div>
+                
+                <!-- Service 4 -->
+                <div class="feature-card bg-white p-8 rounded-lg shadow-md border border-gray-100 transition duration-300">
+                    <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-shield-alt text-red-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Безопасность</h3>
+                    <p class="text-gray-600">Настройка Infrastructure as Code, мониторинг уязвимостей. Защита данных и соответствие стандартам.</p>
+                </div>
+                
+                <!-- Service 5 -->
+                <div class="feature-card bg-white p-8 rounded-lg shadow-md border border-gray-100 transition duration-300">
+                    <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-headset text-yellow-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">24/7 Поддержка</h3>
+                    <p class="text-gray-600">Реагируем на инциденты до того, как они станут проблемой. Круглосуточный мониторинг и быстрая реакция.</p>
+                </div>
+                
+                <!-- Service 6 -->
+                <div class="feature-card bg-white p-8 rounded-lg shadow-md border border-gray-100 transition duration-300">
+                    <div class="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-chart-line text-indigo-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Мониторинг и аналитика</h3>
+                    <p class="text-gray-600">Полная видимость работы ваших систем. Настраиваем дашборды и алерты для ключевых метрик.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- For Whom Section -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Для кого наши решения?</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Наши DevOps-решения идеально подходят для разных типов бизнеса</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-lg shadow-md text-center">
+                    <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-rocket text-blue-600 text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Стартапы</h3>
+                    <p class="text-gray-600">Которые хотят запуститься быстро и без технического долга. Создаем инфраструктуру, которая масштабируется вместе с вашим ростом.</p>
+                </div>
+                
+                <div class="bg-white p-8 rounded-lg shadow-md text-center">
+                    <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-building text-green-600 text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Средний бизнес</h3>
+                    <p class="text-gray-600">У которых "все падает" при обновлениях. Повышаем стабильность и отказоустойчивость ваших систем.</p>
+                </div>
+                
+                <div class="bg-white p-8 rounded-lg shadow-md text-center">
+                    <div class="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-chess-queen text-purple-600 text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Корпорации</h3>
+                    <p class="text-gray-600">Которые тратят слишком много времени на рутинные DevOps-задачи. Автоматизируем процессы, освобождая ваших инженеров для стратегических задач.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section id="process" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Как мы работаем?</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Четкий процесс, который гарантирует результат</p>
+            </div>
+            
+            <div class="max-w-3xl mx-auto">
+                <!-- Step 1 -->
+                <div class="process-step relative pl-16 pb-12">
+                    <div class="absolute left-0 top-0 w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl z-10">1</div>
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+                        <h3 class="text-xl font-bold mb-2">Анализ инфраструктуры</h3>
+                        <p class="text-gray-600">Глубокий аудит текущего состояния. Ищем узкие места, точки отказа и возможности для оптимизации.</p>
+                    </div>
+                </div>
+                
+                <!-- Step 2 -->
+                <div class="process-step relative pl-16 pb-12">
+                    <div class="absolute left-0 top-0 w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl z-10">2</div>
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+                        <h3 class="text-xl font-bold mb-2">Проектирование решения</h3>
+                        <p class="text-gray-600">Подбираем оптимальные инструменты (Kubernetes, Terraform, Ansible, Prometheus и др.) под ваши задачи и бюджет.</p>
+                    </div>
+                </div>
+                
+                <!-- Step 3 -->
+                <div class="process-step relative pl-16 pb-12">
+                    <div class="absolute left-0 top-0 w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl z-10">3</div>
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+                        <h3 class="text-xl font-bold mb-2">Внедрение и автоматизация</h3>
+                        <p class="text-gray-600">Настраиваем CI/CD pipelines, логирование, алерты и мониторинг. Обеспечиваем плавный переход с минимальными рисками.</p>
+                    </div>
+                </div>
+                
+                <!-- Step 4 -->
+                <div class="process-step relative pl-16">
+                    <div class="absolute left-0 top-0 w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl z-10">4</div>
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+                        <h3 class="text-xl font-bold mb-2">Обучение команды</h3>
+                        <p class="text-gray-600">Передаем знания вашим инженерам. Документируем все процессы и проводим обучающие сессии.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dashboard Preview -->
+    <section class="py-16 bg-gray-p-900 text-white">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <h2 class="text-3xl font-bold mb-6">Полный контроль над вашей инфраструктурой</h2>
+                    <p class="text-gray-300 mb-6">Настраиваем комплексные дашборды для мониторинга всех ключевых метрик ваших систем в реальном времени.</p>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
+                            <span>Мониторинг производительности приложений и серверов</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
+                            <span>Автоматические алерты о критических событиях</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
+                            <span>Исторические данные для анализа тенденций</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-400 mt-1 mr-2"></i>
+                            <span>Интеграция со всеми популярными инструментами</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="md:w-1/2">
+                    <div class="bg-gray-800 p-2 rounded-lg shadow-xl">
+                        <img src="images/850477fed08bfe98598082bcd309ce70.gif" alt="Monitoring Dashboard" class="rounded border border-gray-700">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cases Section -->
+    <section id="cases" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Наши кейсы</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Реальные результаты для наших клиентов</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Case 1 -->
+                <div class="bg-gray-50 p-8 rounded-lg shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-wallet text-blue-600 text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">FinTech Стартап</h3>
+                    </div>
+                    <p class="text-gray-600 mb-4">"Помогли сократить время деплоя с 40 минут до 5, уменьшили простои на 90% после внедрения Kubernetes и автоматизации CI/CD."</p>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 rounded-full bg-gray-300 overflow-hidden mr-3">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="CTO">
+                        </div>
+                        <div>
+                            <p class="font-semibold">Алексей Петров</p>
+                            <p class="text-sm text-gray-500">CTO FinTech Company</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Case 2 -->
+                <div class="bg-gray-50 p-8 rounded-lg shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-shopping-cart text-green-600 text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">E-commerce Платформа</h3>
+                    </div>
+                    <p class="text-gray-600 mb-4">"Автоматизировали масштабирование под нагрузку во время распродаж. Пиковые нагрузки теперь обрабатываются без сбоев, а затраты на инфраструктуру снизились на 35%."</p>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 rounded-full bg-gray-300 overflow-hidden mr-3">
+                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Head of Engineering">
+                        </div>
+                        <div>
+                            <p class="font-semibold">Мария Иванова</p>
+                            <p class="text-sm text-gray-500">Head of Engineering</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Case 3 -->
+                <div class="bg-gray-50 p-8 rounded-lg shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-newspaper text-purple-600 text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">Медиа Компания</h3>
+                    </div>
+                    <p class="text-gray-600 mb-4">"Мигрировали наше приложение с монолита на микросервисы с нулевым временем простоя. Теперь можем выпускать обновления отдельных компонентов без влияния на всю систему."</p>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 rounded-full bg-gray-300 overflow-hidden mr-3">
+                            <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="DevOps Lead">
+                        </div>
+                        <div>
+                            <p class="font-semibold">Дмитрий Смирнов</p>
+                            <p class="text-sm text-gray-500">DevOps Lead</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Special Offer -->
+    <section class="py-16 gradient-bg text-white">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Специальное предложение для новых клиентов</h2>
+            <p class="text-xl mb-8 max-w-3xl mx-auto">Закажите DevOps-аудит до конца месяца и получите первый месяц поддержки со скидкой 30%</p>
+            
+            <div class="flex justify-center mb-8">
+                <div class="timer-box bg-white text-blue-600 font-bold rounded-lg py-4 px-6 inline-flex items-center">
+                    <span id="days" class="text-3xl mx-1">07</span>
+                    <span class="text-xl mx-1">:</span>
+                    <span id="hours" class="text-3xl mx-1">23</span>
+                    <span class="text-xl mx-1">:</span>
+                    <span id="minutes" class="text-3xl mx-1">59</span>
+                    <span class="text-xl mx-1">:</span>
+                    <span id="seconds" class="text-3xl mx-1">59</span>
+                </div>
+            </div>
+            
+            <a href="#contact" class="bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 rounded-md font-semibold text-lg inline-block transition duration-300">Заказать аудит со скидкой</a>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Часто задаваемые вопросы</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Ответы на самые популярные вопросы о наших DevOps-услугах</p>
+            </div>
+            
+            <div class="max-w-3xl mx-auto">
+                <!-- FAQ Item 1 -->
+                <div class="mb-6">
+                    <button class="faq-question flex justify-between items-center w-full text-left bg-white p-6 rounded-lg shadow-md hover:bg-gray-50 transition duration-300" onclick="toggleFAQ(1)">
+                        <span class="text-lg font-semibold">Сколько стоит внедрение DevOps?</span>
+                        <i class="fas fa-chevron-down transition-transform duration-300" id="faq-icon-1"></i>
+                    </button>
+                    <div class="faq-answer hidden bg-white p-6 rounded-b-lg shadow-md border-t border-gray-100" id="faq-answer-1">
+                        <p class="text-gray-600">Стоимость зависит от сложности проекта, текущего состояния инфраструктуры и требуемых результатов. Для небольших проектов внедрение базовых DevOps-практик начинается от $5,000. Для комплексных решений с полной автоматизацией и миграцией в облако стоимость может составлять $20,000 и более. Мы предлагаем бесплатный аудит, после которого сможем назвать точную стоимость для вашего проекта.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 2 -->
+                <div class="mb-6">
+                    <button class="faq-question flex justify-between items-center w-full text-left bg-white p-6 rounded-lg shadow-md hover:bg-gray-50 transition duration-300" onclick="toggleFAQ(2)">
+                        <span class="text-lg font-semibold">Какие инструменты вы используете?</span>
+                        <i class="fas fa-chevron-down transition-transform duration-300" id="faq-icon-2"></i>
+                    </button>
+                    <div class="faq-answer hidden bg-white p-6 rounded-b-lg shadow-md border-t border-gray-100" id="faq-answer-2">
+                        <p class="text-gray-600 mb-4">Мы работаем со всеми популярными DevOps-инструментами и выбираем оптимальные для каждого проекта:</p>
+                        <ul class="grid grid-cols-1 md:grid-cols-2 gap-2">
+                            <li class="flex items-center"><i class="fas fa-check text-blue-500 mr-2"></i> Docker и Kubernetes</li>
+                            <li class="flex items-center"><i class="fas fa-check text-blue-500 mr-2"></i> Terraform и Ansible</li>
+                            <li class="flex items-center"><i class="fas fa-check text-blue-500 mr-2"></i> Jenkins, GitLab CI, GitHub Actions</li>
+                            <li class="flex items-center"><i class="fas fa-check text-blue-500 mr-2"></i> Prometheus, Grafana, ELK Stack</li>
+                            <li class="flex items-center"><i class="fas fa-check text-blue-500 mr-2"></i> AWS, Azure, Google Cloud</li>
+                            <li class="flex items-center"><i class="fas fa-check text-blue-500 mr-2"></i> Istio, Linkerd, Consul</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 3 -->
+                <div class="mb-6">
+                    <button class="faq-question flex justify-between items-center w-full text-left bg-white p-6 rounded-lg shadow-md hover:bg-gray-50 transition duration-300" onclick="toggleFAQ(3)">
+                        <span class="text-lg font-semibold">Сколько времени занимает внедрение?</span>
+                        <i class="fas fa-chevron-down transition-transform duration-300" id="faq-icon-3"></i>
+                    </button>
+                    <div class="faq-answer hidden bg-white p-6 rounded-b-lg shadow-md border-t border-gray-100" id="faq-answer-3">
+                        <p class="text-gray-600">Сроки зависят от масштаба проекта:</p>
+                        <ul class="mt-2 space-y-2">
+                            <li class="flex items-start">
+                                <i class="fas fa-clock text-blue-500 mt-1 mr-2"></i>
+                                <span>Базовый CI/CD пайплайн: 1-2 недели</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-clock text-blue-500 mt-1 mr-2"></i>
+                                <span>Полная автоматизация тестирования и деплоя: 2-4 недели</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-clock text-blue-500 mt-1 mr-2"></i>
+                                <span>Миграция в облако с Kubernetes: 4-8 недель</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-clock text-blue-500 mt-1 mr-2"></i>
+                                <span>Комплексное внедрение DevOps-практик: 8-12 недель</span>
+                            </li>
+                        </ul>
+                        <p class="mt-4 text-gray-600">Мы всегда стараемся реализовать проект поэтапно, чтобы вы могли получать пользу уже на ранних стадиях.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 4 -->
+                <div class="mb-6">
+                    <button class="faq-question flex justify-between items-center w-full text-left bg-white p-6 rounded-lg shadow-md hover:bg-gray-50 transition duration-300" onclick="toggleFAQ(4)">
+                        <span class="text-lg font-semibold">Как происходит передача знаний нашей команде?</span>
+                        <i class="fas fa-chevron-down transition-transform duration-300" id="faq-icon-4"></i>
+                    </button>
+                    <div class="faq-answer hidden bg-white p-6 rounded-b-lg shadow-md border-t border-gray-100" id="faq-answer-4">
+                        <p class="text-gray-600">Мы уделяем особое внимание передаче знаний:</p>
+                        <ul class="mt-2 space-y-3">
+                            <li class="flex items-start">
+                                <i class="fas fa-book text-blue-500 mt-1 mr-2"></i>
+                                <span>Подробная документация всех процессов и решений</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-chalkboard-teacher text-blue-500 mt-1 mr-2"></i>
+                                <span>Обучающие сессии для ваших инженеров (2-4 часа каждая)</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-hands-helping text-blue-500 mt-1 mr-2"></i>
+                                <span>Совместная работа над первыми изменениями после внедрения</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-headset text-blue-500 mt-1 mr-2"></i>
+                                <span>Поддержка после завершения проекта (по запросу)</span>
+                            </li>
+                        </ul>
+                        <p class="mt-4 text-gray-600">Наша цель - сделать вашу команду самостоятельной в работе с новой инфраструктурой.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Guide Section -->
+    <section id="guide" class="py-16 bg-white border-t border-gray-200">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center bg-blue-50 rounded-xl overflow-hidden">
+                <div class="md:w-1/2 p-8 md:p-12">
+                    <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-4">Получите бесплатный гайд</h2>
+                    <h3 class="text-xl text-blue-600 font-semibold mb-4">"10 критических ошибок при настройке CI/CD"</h3>
+                    <p class="text-gray-600 mb-6">Узнайте, как избежать самых распространенных ошибок, которые допускают 8 из 10 команд при внедрении DevOps-практик.</p>
+                    
+                    <form class="space-y-4" id="guide-form">
+                        <div>
+                            <input type="text" placeholder="Ваше имя" class="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        </div>
+                        <div>
+                            <input type="email" placeholder="Email" class="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        </div>
+                        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-md font-semibold transition duration-300">Получить гайд</button>
+                    </form>
+                </div>
+                <div class="md:w-1/2  p-8 flex justify-center">
+                    <img src="images/studying.svg" alt="Free Guide" class="max-w-xs md:max-w-md">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gray-p-900 text-white">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row">
+                <div class="md:w-1/2 mb-12 md:mb-0 md:pr-12">
+                    <h2 class="text-3xl font-bold mb-6">Обсудим ваш проект?</h2>
+                    <p class="text-gray-300 mb-8">Оставьте заявку, и наш DevOps-эксперт свяжется с вами в течение 24 часов для бесплатной консультации.</p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 mt-1">
+                                <i class="fas fa-phone-alt text-blue-400"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="font-semibold">Телефон</h4>
+                                <p class="text-gray-400">+7 (123) 456-78-90</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 mt-1">
+                                <i class="fas fa-envelope text-blue-400"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="font-semibold">Email</h4>
+                                <p class="text-gray-400">contact@devopspro.ru</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 mt-1">
+                                <i class="fas fa-map-marker-alt text-blue-400"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="font-semibold">Офис</h4>
+                                <p class="text-gray-400">Москва, ул. DevOps, 42</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2 bg-gray-800 p-8 rounded-lg shadow-xl">
+                    <h3 class="text-2xl font-bold mb-6">Оставьте заявку</h3>
+                    <form id="contact-form">
+                        <div class="space-y-4">
+                            <div>
+                                <input type="text" placeholder="Ваше имя" class="w-full px-4 py-3 rounded-md bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 text-white">
+                            </div>
+                            <div>
+                                <input type="email" placeholder="Email" class="w-full px-4 py-3 rounded-md bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 text-white">
+                            </div>
+                            <div>
+                                <input type="tel" placeholder="Телефон (опционально)" class="w-full px-4 py-3 rounded-md bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 text-white">
+                            </div>
+                            <div>
+                                <textarea placeholder="Опишите вашу задачу" rows="4" class="w-full px-4 py-3 rounded-md bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 text-white"></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-md font-semibold transition duration-300">Отправить заявку</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-gray-400 py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="text-2xl font-bold text-white mb-4">DevOps<span class="text-blue-400">Pro</span></div>
+                    <p class="mb-4">Профессиональные DevOps-решения для бизнеса любого масштаба.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-telegram text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-linkedin text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-github text-xl"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Услуги</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-white">CI/CD Автоматизация</a></li>
+                        <li><a href="#" class="hover:text-white">Облачные решения</a></li>
+                        <li><a href="#" class="hover:text-white">Kubernetes</a></li>
+                        <li><a href="#" class="hover:text-white">Мониторинг</a></li>
+                        <li><a href="#" class="hover:text-white">DevOps Консалтинг</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Компания</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-white">О нас</a></li>
+                        <li><a href="#" class="hover:text-white">Команда</a></li>
+                        <li><a href="#" class="hover:text-white">Кейсы</a></li>
+                        <li><a href="#" class="hover:text-white">Блог</a></li>
+                        <li><a href="#" class="hover:text-white">Контакты</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Ресурсы</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-white">Документация</a></li>
+                        <li><a href="#" class="hover:text-white">Вебинары</a></li>
+                        <li><a href="#" class="hover:text-white">Гайды</a></li>
+                        <li><a href="#" class="hover:text-white">FAQ</a></li>
+                        <li><a href="#" class="hover:text-white">Поддержка</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p>© 2023 DevOpsPro. Все права защищены.</p>
+                <div class="mt-4 md:mt-0">
+                    <a href="#" class="text-sm hover:text-white mr-4">Политика конфиденциальности</a>
+                    <a href="#" class="text-sm hover:text-white">Условия использования</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chatbot -->
+    <div id="chatbot" class="fixed bottom-6 right-6 w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center text-white cursor-pointer shadow-xl chatbot-hidden">
+        <i class="fas fa-robot text-2xl"></i>
+    </div>
+
+    <div id="chat-window" class="fixed bottom-24 right-6 w-80 bg-white rounded-lg shadow-xl hidden flex flex-col" style="height: 400px;">
+        <div class="bg-blue-600 text-white p-3 rounded-t-lg flex justify-between items-center">
+            <h3 class="font-semibold">DevOps Assistant</h3>
+            <button id="close-chat" class="focus:outline-none"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="flex-1 p-4 overflow-y-auto" id="chat-messages">
+            <div class="mb-4">
+                <div class="bg-gray-100 rounded-lg p-3 inline-block">
+                    <p>Привет! Чем могу помочь? Задайте вопрос о наших DevOps-услугах.</p>
+                </div>
+            </div>
+        </div>
+        <div class="p-3 border-t">
+            <div class="flex">
+                <input type="text" placeholder="Напишите сообщение..." class="flex-1 border rounded-l-lg px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500">
+                <button class="bg-blue-600 text-white px-4 py-2 rounded-r-lg"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // FAQ toggle
+        function toggleFAQ(num) {
+            const answer = document.getElementById(`faq-answer-${num}`);
+            const icon = document.getElementById(`faq-icon-${num}`);
+            
+            answer.classList.toggle('hidden');
+            icon.classList.toggle('transform');
+            icon.classList.toggle('rotate-180');
+        }
+
+        // Countdown timer
+        function updateTimer() {
+            const now = new Date();
+            const endOfMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0);
+            endOfMonth.setHours(23, 59, 59, 999);
+            
+            const diff = endOfMonth - now;
+            
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+        }
+        
+        setInterval(updateTimer, 1000);
+        updateTimer();
+
+        // Chatbot toggle
+        const chatbot = document.getElementById('chatbot');
+        const chatWindow = document.getElementById('chat-window');
+        const closeChat = document.getElementById('close-chat');
+        
+        setTimeout(() => {
+            chatbot.classList.remove('chatbot-hidden');
+        }, 3000);
+        
+        chatbot.addEventListener('click', function() {
+            chatWindow.classList.toggle('hidden');
+        });
+        
+        closeChat.addEventListener('click', function() {
+            chatWindow.classList.add('hidden');
+        });
+
+        // Form submission
+        document.getElementById('guide-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Спасибо! Гайд "10 ошибок при настройке CI/CD" отправлен на вашу почту.');
+            this.reset();
+        });
+        
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Спасибо за заявку! Наш специалист свяжется с вами в течение 24 часов.');
+            this.reset();
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
