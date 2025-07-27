@@ -1,9 +1,22 @@
+version: '3.8'
 services:
-
   whoami:
     image: traefik/whoami
-    container_name: <container_name>
-    hostname: <hostname>
-    restart: unless-stopped
-    environment:
-      TZ: Europe/Moscow
+    container_name: whoami
+    networks:
+      - internal
+
+  nginx:
+    image: nginx
+    container_name: nginx
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - "8080:80"
+    depends_on:
+      - whoami
+    networks:
+      - internal
+
+networks:
+  internal:

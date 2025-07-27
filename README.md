@@ -8,7 +8,7 @@
 
 - [X]  Шаг 01 — DevOps и план
 - [X]  Шаг 02 — Docker и NGINX
-- [ ]  Шаг 03 — Compose и сети
+- [X]  Шаг 03 — Compose и сети
 - [ ]  Шаг 04 — Git и GitHub
 - [ ]  Шаг 05 — CI/CD основа
 - [ ]  Шаг 06 — Terraform
