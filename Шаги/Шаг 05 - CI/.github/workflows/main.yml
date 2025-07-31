@@ -1,0 +1,24 @@
+name: Проверка Docker Compose
+
+on:
+  push:
+    paths:
+      - 'Шаги/Шаг 03 - Compose и сети/docker-compose.yml'
+  pull_request:
+    paths:
+      - 'Шаги/Шаг 03 - Compose и сети/docker-compose.yml'
+
+jobs:
+  validate-compose:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Клонировать репозиторий
+        uses: actions/checkout@v4
+
+      - name: Установить Docker Compose
+        run: sudo apt-get update && sudo apt-get install docker-compose -y
+
+      - name: Проверить конфигурацию docker-compose
+        run: |
+          docker-compose -f "Шаги/Шаг 03 - Compose и сети/docker-compose.yml" config -q
