@@ -1,24 +1,25 @@
-name: Проверка Docker Compose
+name: Docker CI
 
 on:
   push:
-    paths:
-      - 'Шаги/Шаг 03 - Compose и сети/docker-compose.yml'
+    branches: [ main ]
   pull_request:
-    paths:
-      - 'Шаги/Шаг 03 - Compose и сети/docker-compose.yml'
+    branches: [ main ]
 
 jobs:
-  validate-compose:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Клонировать репозиторий
-        uses: actions/checkout@v4
+      - name: Клонирование репозитория
+        uses: actions/checkout@v3
 
-      - name: Установить Docker Compose
-        run: sudo apt-get update && sudo apt-get install docker-compose -y
+      - name: Проверка docker-compose
+        run: docker-compose config -q
 
-      - name: Проверить конфигурацию docker-compose
+      - name: Установка NGINX
+        run: sudo apt-get update && sudo apt-get install -y nginx
+
+      - name: Проверка nginx.conf
         run: |
-          docker-compose -f "Шаги/Шаг 03 - Compose и сети/docker-compose.yml" config -q
+          nginx -t -c $(pwd)/nginx.conf || (echo "Ошибка в nginx.conf" && exit 1)
