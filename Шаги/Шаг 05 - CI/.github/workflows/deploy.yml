@@ -1,0 +1,22 @@
+name: CI/CD to Yandex Cloud
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Authenticate to Yandex Container Registry
+      run: echo "${{ secrets.YC_TOKEN }}" | docker login --username oauth --password-stdin cr.yandex
+
+    - name: Build Docker image
+      run: docker build -t cr.yandex/crpn8eulp45tfm2bo8e8/my-app:latest .
+
+    - name: Push Docker image
+      run: docker push cr.yandex/crpn8eulp45tfm2bo8e8/my-app:latest
