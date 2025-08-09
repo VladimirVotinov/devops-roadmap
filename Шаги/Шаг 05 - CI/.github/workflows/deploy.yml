@@ -1,4 +1,4 @@
-name: CI/CD to Yandex Cloud
+name: CI/CD Yandex Cloud
 
 on:
   push:
